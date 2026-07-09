@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --cherry: #b5103c;
+  --noir: #0e0a0a;
+  --ivoire: #faf6ee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ivoire);
+  color: #3a3232;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ── Grain cinématographique global ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Focus visible (accessibilité) ── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cherry);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ivoire);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(181, 16, 60, 0.35);
+  border-radius: 3px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(181, 16, 60, 0.18);
+  color: #0e0a0a;
+}
+
+/* ── Chips scroll horizontal sans scrollbar (filtres menu) ── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Marquee (bandeau défilant signature) ── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Ken Burns — zoom/pan cinématographique lent (hero) ── */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.16) translate3d(-1.6%, -1.2%, 0);
+  }
+  100% {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+}
+.animate-kenburns {
+  transform-origin: center;
+  animation: kenburns 26s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Halo doré descendant sur l'enseigne CHERRY (invite au scroll) ── */
+.hero-sign {
+  overflow: hidden;
+  border-radius: 9999px;
+}
+.hero-sign__glow {
+  position: absolute;
+  left: -55%;
+  top: 0;
+  width: 210%;
+  height: 42%;
+  border-radius: 50%;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(242, 226, 182, 0.62) 0%,
+    rgba(232, 213, 163, 0.26) 40%,
+    rgba(232, 213, 163, 0) 72%
+  );
+  filter: blur(7px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  animation: signGlow 3s cubic-bezier(0.4, 0, 0.4, 1) infinite;
+}
+@keyframes signGlow {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  9% {
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(250%);
+    opacity: 0.65;
+  }
+  58% {
+    transform: translateY(250%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(250%);
+    opacity: 0;
+  }
+}
+
+/* ── Texte contour (watermarks éditoriaux) ── */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 213, 163, 0.14);
+}
+
+/* ── Pointillés de carte (menu typographique) ── */
+.menu-dots {
+  flex: 1;
+  margin: 0 0.75rem;
+  border-bottom: 1px dotted rgba(58, 50, 50, 0.35);
+  transform: translateY(-5px);
+}
+
+/* ── Lien souligné progressif ── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Zoom image éditorial (stable, transform only) ── */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Cartes Google Maps — teinte éditoriale, couleurs au survol ── */
+.map-frame iframe {
+  filter: grayscale(0.85) sepia(0.12) contrast(1.02);
+  transition: filter 0.5s ease;
+}
+.map-frame:hover iframe,
+.map-frame:focus-within iframe {
+  filter: none;
+}
+
+/* ── Mouvement réduit ── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .img-zoom img,
+  .link-underline::after {
+    transition: none;
+  }
+  .animate-kenburns {
+    animation: none;
+  }
+  .hero-sign__glow {
+    animation: none;
+    transform: translateY(90%);
+    opacity: 0.28;
+  }
+}
