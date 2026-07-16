@@ -29,22 +29,19 @@ const ambiance = [
     Icon: Martini,
     title: "Cocktails & Mocktails",
     text: "Créations originales chaque soir",
-    image:
-      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=700&q=80&auto=format&fit=crop"
+    image: "/card-cocktails.png"
   },
   {
     Icon: Music,
     title: "Ambiance Musicale",
     text: "Playlist soignée pour chaque moment",
-    image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80&auto=format&fit=crop"
+    image: "/card-music.png"
   },
   {
     Icon: MoonStar,
-    title: "Ouvert jusqu'à minuit",
-    text: "Du lundi au samedi",
-    image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80&auto=format&fit=crop"
+    title: "Expérience Privée",
+    text: "Un cadre exclusif pour vos soirées entre proches",
+    image: "/card-vip.png"
   }
 ];
 

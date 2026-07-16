@@ -54,18 +54,18 @@ const testimonials = [
 
 const loungeImages = [
   {
-    src: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80&auto=format&fit=crop",
-    alt: "Bar du lounge, ambiance tamisée",
+    src: "/lounge-chicha.png",
+    alt: "Chicha premium dans l'ambiance tamisée du lounge",
     ratio: "aspect-[3/4]"
   },
   {
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format&fit=crop",
-    alt: "Salle du restaurant aux chandelles",
+    src: "/lounge-cocktail.png",
+    alt: "Cocktail signature Cherry aux tons rouge cerise",
     ratio: "aspect-[4/3]"
   },
   {
-    src: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80&auto=format&fit=crop",
-    alt: "Pâtisseries artisanales",
+    src: "/lounge-drinks.png",
+    alt: "Sélection de boissons premium au bar du lounge",
     ratio: "aspect-[4/3]"
   }
 ];
